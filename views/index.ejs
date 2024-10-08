@@ -7,35 +7,32 @@
   <title>Current Weather - OOP</title>
 </head>
 <body>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 mx-auto text-center bg-primary mt-5 p-5 rounded">
-    
-      <% if (error) { %>
-        <div class="alert alert-danger" role="alert">
-          <%= error %>
+    <div class="container">
+        <div class="row">
+          <div class="col-md-6 mx-auto text-center bg-primary mt-5 p-5 rounded">
+          <% if(error === null){ %>
+            <h1 id="location"><%= city %></h1>
+            <ul class="list-group mt-3">
+              <li class="list-group-item" id="description"><%=  description %></li>
+              <li class="list-group-item" id="temperature"><%=  temperature %></li>
+            </ul>
+            <h1 class="mt-3">Change city</h1>
+            <form id="change-city" method="post" action="/">
+              <div class="form-group">
+                <label for="city-name">City</label>
+                <input type="text" id="city-name" class="form-control" name="cityname" required>
+              </div>
+              <input type="submit" class="btn btn-grey" value="Save changes">
+            </form>
+          <%  } else { %>
+              <div class="alter alert-danger" role="alert">
+                  <%= error %>
+              </div>
+              <a class="btn btn-secondary text-white" href="/" role="button">Try again</a>
+          <%  } %>
+          </div>
         </div>
-      <% } else { %>
-        <h1 id="location"><%= city || "City not found" %></h1>
-        <ul class="list-group mt-3">
-          <li class="list-group-item" id="description">Weather: <%= description || "Description not available" %></li>
-          <li class="list-group-item" id="temp">Temperature: <%= temperature ? `${temperature}K` : "Temperature not available" %></li>
-        </ul>
-      <% } %>
-      
-      <h1 class="mt-3">Change city</h1>
-      <form id="change-city" method="post" action="/">
-        <div class="form-group">
-          <label for="city-name">City</label>
-          <input type="text" id="city-name" class="form-control" name="cityname" required>
-        </div>
-        <input type="submit" class="btn btn-grey" value="Save changes">
-      </form>
-    
-      <a class="btn btn-secondary text-white" href="/" role="button">Try again</a>
-    
-    </div>
-  </div>
+      </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkR/rE9/Qpg6aAZG8FdNWNjGpFf5p3XKp5"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScOsAP7uMb1939jfanfPf5khXusvfab04"></script>
