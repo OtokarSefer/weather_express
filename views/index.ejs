@@ -11,11 +11,18 @@
   <div class="row">
     <div class="col-md-6 mx-auto text-center bg-primary mt-5 p-5 rounded">
     
-      <h1 id="location"></h1>
-      <ul class="list-group mt-3">
-        <li class="list-group-item" id="description"></li>
-        <li class="list-group-item" id="temp"></li>
-      </ul>
+      <% if (error) { %>
+        <div class="alert alert-danger" role="alert">
+          <%= error %>
+        </div>
+      <% } else { %>
+        <h1 id="location"><%= city || "City not found" %></h1>
+        <ul class="list-group mt-3">
+          <li class="list-group-item" id="description">Weather: <%= description || "Description not available" %></li>
+          <li class="list-group-item" id="temp">Temperature: <%= temperature ? `${temperature}K` : "Temperature not available" %></li>
+        </ul>
+      <% } %>
+      
       <h1 class="mt-3">Change city</h1>
       <form id="change-city" method="post" action="/">
         <div class="form-group">
@@ -25,10 +32,7 @@
         <input type="submit" class="btn btn-grey" value="Save changes">
       </form>
     
-        <div class="alter alert-danger" role="alert">
-            
-        </div>
-        <a class="btn btn-secondary text-white" href="/" role="button">Try again</a>
+      <a class="btn btn-secondary text-white" href="/" role="button">Try again</a>
     
     </div>
   </div>
